@@ -1,0 +1,130 @@
+<app-menu></app-menu>
+<div class="container">
+
+        <div class="row">
+              <mat-toolbar color="primary" >    
+              <span>Consulta Autor</span>    
+              </mat-toolbar>  
+        </div>
+        <div  class="row"  style="margin-top: 3%">
+                <mat-form-field class="col-md-5">
+                    <mat-label>Nombre de Autor</mat-label>
+                    <input  matInput [(ngModel)]="nombres" >
+                </mat-form-field>
+                <mat-form-field class="col-md-5">
+                    <mat-label>Frecuencia</mat-label>
+                    <input  matInput    [(ngModel)]="apellidos">
+                </mat-form-field>
+                <div class="col-md-2" style="display: flex; align-items: center; justify-content: center">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" 
+                                id="idEstado" name="estado"   [(ngModel)]="estado" />         
+                        <label class="custom-control-label" for="idEstado">Estado</label>
+                    </div>   
+                </div>
+        </div>
+        <div  class="row"  style="margin-top: 3%">
+            <mat-form-field class="col-md-6">
+                <mat-label>Fecha de Nacimiento (Desde)</mat-label>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <input  matInput  [matDatepicker]="picker1"  [(ngModel)]="fecDesde">
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+                <mat-label>Fecha de Nacimiento  (Hasta)</mat-label>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <input  matInput [matDatepicker]="picker2"  [(ngModel)]="fecHasta" >
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div  class="row"  style="margin-top: 3%;">
+            <mat-form-field class="col-md-6">
+                <mat-label>País</mat-label>
+                <mat-select    [(ngModel)]="pais">
+                    <mat-option value="-1"> [Todos] </mat-option>
+                    <mat-option *ngFor="let x of lstPais" [value]="x.idPais">
+                        {{x.nombre}}
+                    </mat-option>
+                </mat-select> 
+            </mat-form-field> 
+            <mat-form-field class="col-md-6">
+                <mat-label>Tipo Revista</mat-label>
+                <mat-select   [(ngModel)]="grado">
+                    <mat-option value="-1"> [Todos] </mat-option>
+                    <mat-option *ngFor="let y of lstGradoAutor" [value]="y.idDataCatalogo">
+                        {{y.descripcion}}
+                </mat-option> 
+                </mat-select> 
+            </mat-form-field>
+            
+        </div>
+
+        <div  class="row"  style="margin-top: 3%;">
+
+                <mat-form-field class="col-md-5">
+                        <mat-label>ORCID</mat-label>
+                        <input  matInput [(ngModel)]="orcid" >
+                    </mat-form-field>
+            </div>
+
+        <div  class="row"  style="margin-top: 3%; display: flex; align-items: center; justify-content: center">
+               <button mat-raised-button type="button" (click)="consulta()" color="primary" style="width: 150px;" >Filtrar</button>
+        </div>
+
+
+        <div  class="row" style="width: 1500px; margin-left: -15%;">
+                <div class="row" style="margin-top: 2%">
+                    
+                        <mat-table  #table  class="mat-cell" [dataSource]="dataSource">
+                                <ng-container matColumnDef="idAutor">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef  style="font-weight: bold">Código</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux" >{{aux.idAutor}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="nombres">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Nombres</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux" >{{ aux.nombres}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="apellidos">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Apellidos</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux" >{{ aux.apellidos}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="fechaNacimiento">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Fecha de Nacimiento</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux" >{{ aux.fechaNacimiento | date:"dd/MM/yyyy"}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="telefono">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Teléfono</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.telefono }}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="celular">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Celular</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.celular }}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="orcid">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">ORCID</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.orcid }}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="pais">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">País</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.pais.nombre }}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="grado">
+                                  <mat-header-cell  mat-header-cell *matHeaderCellDef style="font-weight: bold">Grado</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.grado.descripcion}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="estado">
+                                  <mat-header-cell mat-header-cell *matHeaderCellDef style="font-weight: bold">Estado</mat-header-cell>
+                                  <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+                                </ng-container>
+   
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                      <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+                  </mat-table>
+                  <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+                </div>
+            
+        </div>
+
+    </div>

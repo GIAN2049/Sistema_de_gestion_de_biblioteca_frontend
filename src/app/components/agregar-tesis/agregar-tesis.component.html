@@ -1,0 +1,109 @@
+<app-menu></app-menu>
+<div class="container">
+    <form id="idForm" [formGroup]="formsRegistra">
+        <div class="row">
+            <mat-toolbar color="primary">
+                <span>Registra Tesis</span>
+            </mat-toolbar>
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Título</mat-label>
+                <input matInput [(ngModel)]="objTesis.titulo"
+                    formControlName="validaTitulo">
+                <mat-hint style="color: red"
+                    *ngIf="formsRegistra.controls.validaTitulo.touched">
+                    <span
+                        *ngIf="formsRegistra.controls.validaTitulo.hasError('required')">
+                        El Título es requerido
+                    </span>
+                    <span
+                        *ngIf="formsRegistra.controls.validaTitulo.hasError('pattern')">
+                        El Título es de 3 a 30 caracteres
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Fecha creación</mat-label>
+                <input matInput [matDatepicker]="picker"
+                    [(ngModel)]="objTesis.fechaCreacion"
+                    formControlName="validaFechaCreacion">
+                <mat-datepicker-toggle matIconSuffix
+                    [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-hint style="color: red"
+                    *ngIf="formsRegistra.controls.validaFechaCreacion.touched">
+                    <span
+                        *ngIf="formsRegistra.controls.validaFechaCreacion.hasError('required')">
+                        La fecha creación es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Tema</mat-label>
+                <mat-select [(ngModel)]="objTesis.tema!.idDataCatalogo"
+                    formControlName="validaTema">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstTema"
+                        [value]="x.idDataCatalogo">
+                        {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"
+                    *ngIf="formsRegistra.controls.validaTema.touched">
+                    <span
+                        *ngIf="formsRegistra.controls.validaTema.hasError('min')">
+                        El Tema es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Idioma</mat-label>
+                <mat-select [(ngModel)]="objTesis.idioma!.idDataCatalogo"
+                    formControlName="validaIdioma">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstIdioma"
+                        [value]="x.idDataCatalogo">
+                        {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"
+                    *ngIf="formsRegistra.controls.validaIdioma.touched">
+                    <span
+                        *ngIf="formsRegistra.controls.validaIdioma.hasError('min')">
+                        El Idioma es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-4">
+                <mat-label>Centro de Estudios</mat-label>
+                <mat-select
+                    [(ngModel)]="objTesis.centroEstudios!.idDataCatalogo"
+                    formControlName="validaCentroEstudios">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstCentroEstudios"
+                        [value]="x.idDataCatalogo">
+                        {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"
+                    *ngIf="formsRegistra.controls.validaCentroEstudios.touched">
+                    <span
+                        *ngIf="formsRegistra.controls.validaCentroEstudios.hasError('min')">
+                        El centro de estudios es requerido
+                    </span>
+                </mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <button mat-raised-button type="submit"
+                [disabled]="!formsRegistra.valid" (click)="registra()"
+                color="primary">Registra</button>
+        </div>
+    </form>
+</div>

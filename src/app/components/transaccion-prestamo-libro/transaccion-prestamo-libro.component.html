@@ -1,0 +1,84 @@
+<app-menu></app-menu>
+
+<div class="container mat-elevation-z8" >
+    <div class="row">
+        <mat-toolbar color="primary" >    
+        <span>Préstamo de Libro</span>    
+        </mat-toolbar>  
+    </div>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Alumno</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-3">
+                <mat-label>Nombre</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.nombres" readonly>
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <mat-label>Apellido</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.apellidos" readonly>
+            </mat-form-field>
+           <button mat-raised-button color="primary" (click)="buscaAlumno()" type="button" class='btn btn-primary btn-sm' style="width: 20px">🔍︎</button>
+           
+           
+        <mat-form-field class="col-md-4" style="margin-left: 10%;">
+            <mat-label>Fecha de devolución</mat-label>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <input  matInput  [matDatepicker]="picker1"  [(ngModel)]="fechaDevolucion" [min]="fechaPrestamo" readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Libro</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-5">
+                <mat-label>Nombre</mat-label>
+                <input  matInput  [(ngModel)] ="objLibro.titulo" readonly>
+            </mat-form-field>
+
+           <button mat-raised-button color="primary"type="button"  (click)="buscaLibro()" class='btn btn-primary btn-sm' style="width: 20px">🔍︎</button>
+           <button mat-raised-button color="primary"  type="button"(click)="agregarLibro()"  class='btn btn-primary btn-sm' style="width: 100px">Agregar</button>
+          
+        </div>
+    </div> 
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <button mat-raised-button color="primary" type="button" (click)="registrarPrestamo()"class='btn btn-primary btn-sm' style="width: 1100px">Registrar Préstamo</button>
+        </div>
+     </div>  
+     
+     <div class="row" style="margin-top: 3%"
+     style="margin-left: 20%;">
+        <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+              <ng-container matColumnDef="idLibro">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.idLibro  }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="titulo">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Libro</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.titulo}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary"  (click)="eliminaLibro(aux)" >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+  </div>
+     
+  <div class="container" style="margin-top: 2%;">
+    <div class="row"></div>
+  </div> 
+ </div>   

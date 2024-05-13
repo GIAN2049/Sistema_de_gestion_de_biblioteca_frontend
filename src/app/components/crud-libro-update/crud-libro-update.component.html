@@ -1,0 +1,126 @@
+<div class="container">
+  <form  id="idForm" [formGroup]="formsActualiza" >
+    <div class="mat-dialog-content">
+            <div class="row">
+                    <mat-toolbar color="primary" >
+                    <span>Actualiza Libro</span>
+                    </mat-toolbar>
+            </div>
+            <div class="row" style="margin-top: 3%">
+              <mat-form-field class="col-md-4">
+                  <mat-label>Título</mat-label>
+                  <input  matInput [(ngModel)]="objLibro.titulo" formControlName="validaTitulo">
+                  <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaTitulo.touched">
+                      <span *ngIf="formsActualiza.controls.validaTitulo.hasError('required')">
+                          El título es requerido
+                      </span>
+                      <span *ngIf="formsActualiza.controls.validaTitulo.hasError('pattern')">
+                          El título es de 3 a 30 caracteres
+                      </span>
+                  </mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-md-4">
+                  <mat-label>Año</mat-label>
+                  <input  matInput [(ngModel)]="objLibro.anio" formControlName="validaAnio">
+                  <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaAnio.touched">
+                    <span *ngIf="formsActualiza.controls.validaAnio.hasError('required')">
+                        El año es requerido
+                    </span>
+                    <span *ngIf="formsActualiza.controls.validaAnio.hasError('pattern')">
+                        El año es de 4 dígitos
+                    </span>
+              </mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-md-4">
+                  <mat-label>Serie</mat-label>
+                  <input matInput [(ngModel)]="objLibro.serie" formControlName="validaSerie">
+                  <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaSerie.touched">
+                    <span *ngIf="formsActualiza.controls.validaSerie.hasError('required')">
+                        La serie es requerida
+                    </span>
+                    <span *ngIf="formsActualiza.controls.validaSerie.hasError('pattern')">
+                        El serie es de 12 caracteres. Mayúsculas y números.
+                    </span>
+                </mat-hint>
+              </mat-form-field>
+          </div>
+
+          <div class="row" style="margin-top: 3%">
+              <mat-form-field class="col-md-4">
+                <mat-label>Categoría de Libro</mat-label>
+                <mat-select  [(ngModel)]="objLibro.categoriaLibro!.idDataCatalogo" formControlName="validaCategoriaLibro">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstCategoriaLibro" [value]="x.idDataCatalogo">
+                          {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaCategoriaLibro.touched">
+                  <span *ngIf="formsActualiza.controls.validaCategoriaLibro.hasError('min')">
+                      La categoría es requerida
+                  </span>
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-md-4">
+                <mat-label>Tipo de Libro</mat-label>
+                <mat-select  [(ngModel)]="objLibro.tipoLibro!.idDataCatalogo" formControlName="validatipoLibro">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstTipoLibro" [value]="x.idDataCatalogo">
+                          {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validatipoLibro.touched">
+                  <span *ngIf="formsActualiza.controls.validatipoLibro.hasError('min')">
+                      El tipo es requerido
+                  </span>
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field class="col-md-4">
+                <mat-label>Editorial</mat-label>
+                <mat-select  [(ngModel)]="objLibro.editorial!.idEditorial" formControlName="validaEditorial">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstEditorial" [value]="x.idEditorial">
+                          {{x.razonSocial}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaEditorial.touched">
+                  <span *ngIf="formsActualiza.controls.validaEditorial.hasError('min')">
+                      La editorial es requerida
+                  </span>
+                </mat-hint>
+              </mat-form-field>
+          </div>
+
+
+          <div class="row justify-content-center" style="margin-top: 3%">
+              <mat-form-field class="col-md-4">
+                <mat-label>Estado del Préstamo</mat-label>
+                <mat-select  [(ngModel)]="objLibro.estadoPrestamo!.idDataCatalogo" formControlName="validaestadoPrestamo">
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstEstadoPrestamo" [value]="x.idDataCatalogo">
+                          {{x.descripcion}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint style="color: red"  *ngIf="formsActualiza.controls.validaestadoPrestamo.touched">
+                  <span *ngIf="formsActualiza.controls.validaestadoPrestamo.hasError('min')">
+                      El estado es requerido
+                  </span>
+                </mat-hint>
+              </mat-form-field>
+          </div>
+              <div  mat-dialog-actions>
+                  <button mat-raised-button
+                          type="submit"
+                          (click) = "actualizar()"
+                          color="primary"
+                          [mat-dialog-close]="1"
+                          [disabled]="formsActualiza.invalid">
+                          Actualiza
+                  </button>
+                  <button mat-button
+                          color="primary">
+                          Salir
+                  </button>
+              </div>
+    </div>
+  </form>
+</div>

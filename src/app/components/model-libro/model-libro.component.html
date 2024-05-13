@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+          <mat-toolbar color="primary" >    
+            <span>Buscar Libro</span>    
+          </mat-toolbar>  
+    </div>
+
+    <div class="row" style="margin-top: 3%">
+      <mat-form-field class="col-md-5">
+          <mat-label >Título de Libro</mat-label>
+          <input  matInput #txtVal (keyup)="applyFilter()" [(ngModel)] ="filtro" >
+      </mat-form-field>
+  </div>
+
+  <div class="row" style="margin-top: 3%">
+        <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+              <ng-container matColumnDef="idLibro">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.idLibro  }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="titulo">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Título</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.titulo}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary"  (click)="seleccioneLibro(aux)">
+                        <mat-icon>check_circle_outline</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

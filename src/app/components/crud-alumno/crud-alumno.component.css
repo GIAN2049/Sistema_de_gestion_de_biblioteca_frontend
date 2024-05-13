@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 900px;
+    min-height: 400px;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+  
+  .mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  
+  .mat-column-idLibro {
+    flex: 0 0 7%;
+  }
+  .mat-column-titulo {
+    flex: 0 0 15%;
+  }
+  .mat-column-anio {
+    flex: 0 0 5%;
+  }
+  .mat-column-serie {
+    flex: 0 0 10%;
+  }
+  .mat-column-categoriaLibro {
+    flex: 0 0 10%;
+  }
+  .mat-column-tipoLibro {
+    flex: 0 0 10%;
+  }
+  .mat-column-editorial {
+    flex: 0 0 10%;
+  }
+  .mat-column-estadoPrestamo {
+    flex: 0 0 10%;
+  }
+  .mat-column-estado {
+    flex: 0 0 10%;
+  }
+  .mat-column-acciones {
+    flex: 0 0 20%;
+  }

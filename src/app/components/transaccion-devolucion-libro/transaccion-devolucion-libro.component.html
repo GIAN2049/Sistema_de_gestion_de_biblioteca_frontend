@@ -1,0 +1,107 @@
+<app-menu></app-menu>
+<div class="container mat-elevation-z8" >
+   
+    <div class="row">
+        <mat-toolbar color="primary" >    
+        <span>Devolucion de libro</span>    
+        </mat-toolbar>  
+    </div>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Alumno</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-5">
+                <mat-label>Nombres</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.nombres" >
+            </mat-form-field>
+            <mat-form-field class="col-md-5">
+                <mat-label>Apellidos</mat-label>
+                <input  matInput [(ngModel)] ="objAlumno.apellidos" >
+            </mat-form-field>
+           <button mat-raised-button color="primary" (click)="buscaAlumno()" type="button" class='btn btn-primary btn-sm' style="width: 20px">...</button>
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-5">
+                <mat-label>Fecha Prestamo</mat-label>
+                <input matInput [matDatepicker]="picker1" id="fechaPrestamo" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="col-md-5">
+                <mat-label>Fecha Devolucion</mat-label>
+                <input matInput [matDatepicker]="picker2" id="fechaDevolucion" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div> 
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <mat-label>Libros</mat-label> 
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Titulo</mat-label>
+                <input  matInput  [(ngModel)] ="objLibro.titulo">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <mat-label>Año</mat-label>
+                <input  matInput  [(ngModel)] ="objLibro.anio">
+            </mat-form-field>
+            <mat-form-field class="col-md-2">
+                <mat-label>Serie</mat-label>
+                <input  matInput  [(ngModel)] ="objLibro.serie">
+            </mat-form-field>
+           <button mat-raised-button color="primary" (click)="buscaLibro()" type="button" class='btn btn-primary btn-sm' style="width: 20px">...</button>
+           <button mat-raised-button color="primary" (click)="agregarLibro()" type="button" class='btn btn-primary btn-sm' style="width: 100px">Agregar</button>
+          
+        </div>
+    </div> 
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <button mat-raised-button color="primary" (click)="registrarDevolucion()" type="button" class='btn btn-primary btn-sm' style="width: 1100px">Registrar Devolucion</button>
+        </div>
+     </div>  
+     
+     <div class="row" style="margin-top: 3%">
+        <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+              <ng-container matColumnDef="idLibro">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.idLibro  }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="titulo">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Titulo</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.titulo}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="anio">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Año</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.anio }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="serie">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >Serie</mat-header-cell>
+                <mat-cell *matCellDef="let aux" >{{ aux.serie }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="actions">
+                <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let aux; let i=index;">
+                    <button mat-raised-button color="primary"  (click)="eliminaLibro(aux)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+              </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+  </div>
+     
+  <div class="container" style="margin-top: 2%;">
+    <div class="row"></div>
+  </div> 
+
+ </div>   
+
+ 

@@ -1,0 +1,97 @@
+<app-menu></app-menu>
+<div class="container mat-elevation-z8" >
+   
+    <div class="row">
+        <mat-toolbar color="primary" >    
+        <span>RESERVA DE SALA</span>    
+        </mat-toolbar>  
+    </div>
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="mx-2 mb-2">
+                    <mat-label>Alumno</mat-label> 
+                </div>
+                <div class="row">
+                   <div class="col-md-6">
+                    <mat-form-field style="width: 300px;">
+                        <mat-label>Nombre</mat-label>
+                        <input  matInput [(ngModel)] ="objAlumno.nombres" readonly>
+                    </mat-form-field>
+                   </div>
+                   <div class="col-md-4">
+                     <mat-form-field>
+                        <mat-label>ID</mat-label>
+                        <input  matInput [(ngModel)] ="objAlumno.idAlumno" readonly>
+                     </mat-form-field>
+                   </div>
+                   <div class="col-md-2" style="margin-top: 10px;">
+                    <button mat-raised-button color="primary" (click)="buscaAlumno()" type="button" class='btn btn-primary btn-sm'>🔍︎</button>
+                   </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+               
+                <div class="row">
+                    <div class="col-md-6" style="margin-top: 32px;">
+                        <mat-form-field style="width: 170px;">
+                            <mat-label>HORA INICIO</mat-label>
+                            <input matInput [(ngModel)]="objReservaSala.horaInicio" placeholder="00:00:00"> 
+                        </mat-form-field>
+                         
+                    </div>
+                    <div class="col-md-6" style="margin-top: 32px;">
+                        <mat-form-field style="width: 170px;">
+                            <mat-label>HORA FIN</mat-label>
+                            <input matInput [(ngModel)]="objReservaSala.horaFin" placeholder="00:00:00">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="margin-top: 3%">
+            <div class="col-md-7">
+                <div class="mx-2 mb-2">
+                    <mat-label>SALA</mat-label> 
+                </div>
+                <div class="row">
+                   <div class="col-md-6">
+                    <mat-form-field style="width: 300px;">
+                        <mat-label>NUMERO DE SALA</mat-label>
+                        <input  matInput [(ngModel)] ="objSala.numero" readonly>
+                    </mat-form-field>
+                   </div>
+                   <div class="col-md-4">
+                     <mat-form-field>
+                        <mat-label>ID</mat-label>
+                        <input  matInput [(ngModel)] ="objSala.idSala" readonly>
+                     </mat-form-field>
+                   </div>
+                   <div class="col-md-2" style="margin-top: 10px;">
+                    <button mat-raised-button color="primary" (click)="buscaSala()" type="button" class='btn btn-primary btn-sm'>🔍︎</button>
+                   </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" style="padding-top: 35px;">
+                <button mat-raised-button color="primary" (click)="registrarReserva()" type="button" class='btn btn-primary btn-sm p-4'>
+                    Registrar Reserva
+                </button>
+            </div>
+        </div>
+    </div> 
+
+    <div class="container" style="margin-top: 2%;">
+        <div class="row">
+            
+        </div>
+     </div>  
+     
+     
+  <div class="container" style="margin-top: 2%;">
+    <div class="row"></div>
+  </div> 
+
+ </div>   
