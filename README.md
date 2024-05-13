@@ -1,5 +1,8 @@
 # Projecto Sistema de Gesion de Biblioteca
 
+## Profesor
+ JORGE LORENZO JACINTO GUTARRA
+ 
 ## Equipo
 Este proyecto fue desarrollado en equipo. Los miembros del equipo fueron:
 
