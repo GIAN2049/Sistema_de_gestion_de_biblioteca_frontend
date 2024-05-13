@@ -1,4 +1,4 @@
-# Projecto Sistema de Gesion de Biblioteca
+# Proyecto Sistema de Gesion de Biblioteca
 
 ## Profesor
  JORGE LORENZO JACINTO GUTARRA
